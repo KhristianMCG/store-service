@@ -26,11 +26,11 @@ public class PriceEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private BrandEntity brandId;
 
-    @Column(name = "start_date")
-    private Instant startDate;
+    @Column(name = "price_start_date")
+    private Instant priceStartDate;
 
-    @Column(name = "end_date")
-    private Instant endDate;
+    @Column(name = "price_end_date")
+    private Instant priceEndDate;
 
     @Column(name = "price_list")
     private Integer priceList;

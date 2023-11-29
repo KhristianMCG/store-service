@@ -13,8 +13,8 @@ public class PriceEntityToDtoConverter implements AbstractListConverter<PriceEnt
                 .brandId(Math.toIntExact(source.getBrandId().getId()))
                 .productId(source.getProductId())
                 .priceListId(source.getPriceList())
-                .dateOfApplicationStart(source.getStartDate().toString())
-                .dateOfApplicationEnd(source.getEndDate().toString())
+                .dateOfApplicationStart(source.getPriceStartDate().toString())
+                .dateOfApplicationEnd(source.getPriceEndDate().toString())
                 .build();
     }
 }
