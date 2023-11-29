@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Swagger Storage Management Service - OpenAPI 3.0
+  description: |-
+    Storage cloths service management.
+  termsOfService: 'https://swagger.io/terms/'
+  contact:
+    email: team@inditex.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.4
+externalDocs:
+  description: Find out more about Swagger
+  url: 'https://swagger.io'
+tags:
+  - name: Prices
+    description: All related with prices
+    externalDocs:
+      description: Find out more
+      url: 'https://swagger.io'
+
+servers:
+  - url: https://{environment}.inditex.cloud/{basePath}
+    description: The production API server
+    variables:
+      environment:
+        default: live
+        enum:
+          - dev
+          - pre
+          - live
+        description: this value is assigned by the service provider, in this example `inditex.cloud`
+      basePath:
+        default: /
+
+paths:
+  /prices:
+    $ref: './paths/get-prices-spec.yml#/prices'
+
+components:
+  schemas:
+    SearchCriteria:
+      $ref: './schemas/SearchCriteria.yml'
+    Price:
+      $ref: './schemas/Price.yml'

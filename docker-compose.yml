@@ -1,0 +1,38 @@
+version: '3'
+services:
+  storage-service:
+    container_name: storage-service
+    image: 'storage-service:latest'
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - shared-network
+
+  prometheus:
+    image: 'prom/prometheus:latest'
+    ports:
+      - '9090:9090'
+    command: '--config.file=/etc/prometheus/config.yml'
+    volumes:
+      - './observability/prometheus/prometheus.yml:/etc/prometheus/config.yml'
+    networks:
+      - shared-network
+
+  grafana:
+    image: 'grafana/grafana:latest'
+    ports:
+      - '3000:3000'
+    networks:
+      - shared-network
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  shared-network:
+    driver: bridge
