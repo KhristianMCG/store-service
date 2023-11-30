@@ -1,5 +1,6 @@
 package com.inditex.storage.infra;
 
+import com.inditex.storage.infra.rest.api.PriceApiDelegateImpl;
 import com.inditex.storage.service.PriceService;
 import om.inditex.storage.infra.rest.api.model.PriceDto;
 import om.inditex.storage.infra.rest.api.model.SearchCriteriaDto;
