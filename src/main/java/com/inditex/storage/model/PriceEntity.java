@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.sql.Timestamp;
 import java.util.Currency;
 
 @Entity
@@ -26,22 +26,24 @@ public class PriceEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private BrandEntity brand;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "price_start_date")
-    private Instant priceStartDate;
+    private Timestamp priceStartDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "price_end_date")
-    private Instant priceEndDate;
+    private Timestamp priceEndDate;
 
     @Column(name = "price_list")
-    private Integer priceList;
+    private int priceList;
 
     @Column(name = "product_id")
-    private Integer productId;
+    private int productId;
 
-    @Column(name = "priority")
-    private Integer priority;
+    @Column(name = "price_priority")
+    private int pricePriority;
 
-    @Column(name = "price")
+    @Column(name = "price", precision = 2)
     private BigDecimal price;
 
     @Column(name = "currency")

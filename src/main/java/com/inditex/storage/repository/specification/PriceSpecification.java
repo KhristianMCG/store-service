@@ -1,5 +1,7 @@
 package com.inditex.storage.repository.specification;
 
+import com.inditex.storage.infra.rest.model.SearchCriteria;
+import com.inditex.storage.model.BrandEntity_;
 import com.inditex.storage.model.PriceEntity;
 import com.inditex.storage.model.PriceEntity_;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -7,7 +9,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.Setter;
-import om.inditex.storage.infra.rest.api.model.SearchCriteriaDto;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -18,20 +19,20 @@ import java.util.List;
 @Setter
 public class PriceSpecification implements Specification<PriceEntity> {
 
-    private transient SearchCriteriaDto searchCriteriaDto;
+    private transient SearchCriteria searchCriteria;
 
     @Override
     public Predicate toPredicate(final Root<PriceEntity> root, final CriteriaQuery<?> query, final CriteriaBuilder criteriaBuilder) {
         final List<Predicate> predicates = new ArrayList<>();
 
-        if (searchCriteriaDto.getBrandId() != null) {
-            predicates.add(criteriaBuilder.equal(root.get(PriceEntity_.BRAND), searchCriteriaDto.getBrandId()));
+        if (searchCriteria.getBrandId() != null) {
+            predicates.add(criteriaBuilder.equal(root.get(PriceEntity_.BRAND).get(BrandEntity_.ID), searchCriteria.getBrandId()));
         }
-        if (searchCriteriaDto.getProductId() != null) {
-            predicates.add(criteriaBuilder.equal(root.get(PriceEntity_.PRODUCT_ID), searchCriteriaDto.getProductId()));
+        if (searchCriteria.getProductId() != null) {
+            predicates.add(criteriaBuilder.equal(root.get(PriceEntity_.PRODUCT_ID), searchCriteria.getProductId()));
         }
-        if (searchCriteriaDto.getDateOfApplication() != null) {
-            predicates.add(criteriaBuilder.between(criteriaBuilder.literal(searchCriteriaDto.getDateOfApplication()),
+        if (searchCriteria.getDateOfApplication() != null) {
+            predicates.add(criteriaBuilder.between(criteriaBuilder.literal(searchCriteria.getDateOfApplication()),
                     root.get(PriceEntity_.PRICE_START_DATE),
                     root.get(PriceEntity_.PRICE_END_DATE)));
         }
@@ -40,6 +41,6 @@ public class PriceSpecification implements Specification<PriceEntity> {
         }
 
         return query.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])))
-                .distinct(true).orderBy(criteriaBuilder.desc(root.get(PriceEntity_.PRIORITY))).getRestriction();
+                .distinct(true).orderBy(criteriaBuilder.asc(root.get(PriceEntity_.PRICE_PRIORITY))).getRestriction();
     }
 }

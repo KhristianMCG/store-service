@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PriceEntityToDtoConverter implements AbstractListConverter<PriceEntity, PriceDto> {
+
     @Override
     public PriceDto convert(final PriceEntity source) {
         return PriceDto.builder()

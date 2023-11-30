@@ -1,11 +1,11 @@
 package com.inditex.storage.repository.specification;
 
+import com.inditex.storage.infra.rest.model.SearchCriteria;
 import com.inditex.storage.model.PriceEntity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import om.inditex.storage.infra.rest.api.model.SearchCriteriaDto;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,13 +27,13 @@ class PriceSpecificationTest {
         final CriteriaBuilder criteriaBuilder = mock(CriteriaBuilder.class);
         final CriteriaQuery<PriceEntity> criteriaQuery = mock(CriteriaQuery.class);
         final Root<PriceEntity> root = mock(Root.class);
-        final SearchCriteriaDto searchCriteriaDto = mock(SearchCriteriaDto.class);
+        final SearchCriteria searchCriteria = mock(SearchCriteria.class);
         final Predicate predicate = mock(Predicate.class);
 
         when(criteriaQuery.where(predicate)).thenReturn(criteriaQuery);
         when(criteriaQuery.distinct(true)).thenReturn(criteriaQuery);
 
-        priceSpecification.setSearchCriteriaDto(searchCriteriaDto);
+        priceSpecification.setSearchCriteria(searchCriteria);
 
         final Predicate predicateResponse = priceSpecification.toPredicate(root, criteriaQuery, criteriaBuilder);
 
@@ -42,10 +42,10 @@ class PriceSpecificationTest {
 
     @Test
     void setSearchCriteriaDto() {
-        final SearchCriteriaDto searchCriteriaDto = mock(SearchCriteriaDto.class);
+        final SearchCriteria searchCriteria = mock(SearchCriteria.class);
 
-        priceSpecification.setSearchCriteriaDto(searchCriteriaDto);
+        priceSpecification.setSearchCriteria(searchCriteria);
 
-        verify(priceSpecification).setSearchCriteriaDto(searchCriteriaDto);
+        verify(priceSpecification).setSearchCriteria(searchCriteria);
     }
 }
