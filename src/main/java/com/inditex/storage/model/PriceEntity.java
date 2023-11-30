@@ -24,7 +24,7 @@ public class PriceEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private BrandEntity brandId;
+    private BrandEntity brand;
 
     @Column(name = "price_start_date")
     private Instant priceStartDate;
