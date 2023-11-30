@@ -41,6 +41,6 @@ public class PriceSpecification implements Specification<PriceEntity> {
         }
 
         return query.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])))
-                .distinct(true).orderBy(criteriaBuilder.asc(root.get(PriceEntity_.PRICE_PRIORITY))).getRestriction();
+                .distinct(true).orderBy(criteriaBuilder.desc(root.get(PriceEntity_.PRICE_PRIORITY))).getRestriction();
     }
 }

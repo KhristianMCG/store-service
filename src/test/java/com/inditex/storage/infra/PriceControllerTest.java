@@ -45,7 +45,7 @@ public class PriceControllerTest {
                 .response();
 
         final JsonPath jsonResponse = empResponse.jsonPath();
-        assertThat(jsonResponse.getString("price")).isEqualTo("[35.500]");
+        assertThat(jsonResponse.getString("price")).isEqualTo("35.500");
     }
 
     @Test
@@ -69,7 +69,7 @@ public class PriceControllerTest {
                 .response();
 
         final JsonPath jsonResponse = empResponse.jsonPath();
-        assertThat(jsonResponse.getString("price")).isEqualTo("[35.500, 25.450]");
+        assertThat(jsonResponse.getString("price")).isEqualTo("25.450");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class PriceControllerTest {
                 .response();
 
         final JsonPath jsonResponse = empResponse.jsonPath();
-        assertThat(jsonResponse.getString("price")).isEqualTo("[35.500]");
+        assertThat(jsonResponse.getString("price")).isEqualTo("35.500");
     }
 
     @Test
@@ -117,7 +117,7 @@ public class PriceControllerTest {
                 .response();
 
         final JsonPath jsonResponse = empResponse.jsonPath();
-        assertThat(jsonResponse.getString("price")).isEqualTo("[35.500, 30.500]");
+        assertThat(jsonResponse.getString("price")).isEqualTo("30.500");
     }
 
     @Test
@@ -141,6 +141,6 @@ public class PriceControllerTest {
                 .response();
 
         final JsonPath jsonResponse = empResponse.jsonPath();
-        assertThat(jsonResponse.getString("price")).isEqualTo("[35.500, 38.950]");
+        assertThat(jsonResponse.getString("price")).isEqualTo("38.950");
     }
 }

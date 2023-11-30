@@ -17,9 +17,7 @@ prices:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '../schemas/Price.yml'
+              $ref: '../schemas/Price.yml'
       '204':
         description: No prices were found
         content:

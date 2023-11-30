@@ -10,7 +10,7 @@ import om.inditex.storage.infra.rest.api.model.PriceDto;
 import om.inditex.storage.infra.rest.api.model.SearchCriteriaDto;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 import static com.inditex.storage.exception.ErrorMessages.PRICES_NOT_FOUND;
 
@@ -32,10 +32,10 @@ public class PriceService {
         this.searchCriteriaDtoToSearchCriteriaConverter = searchCriteriaDtoToSearchCriteriaConverter;
     }
 
-    public List<PriceDto> findAllFilteredPrices(final SearchCriteriaDto searchCriteriaDto) {
+    public PriceDto findAllFilteredPrices(final SearchCriteriaDto searchCriteriaDto) {
         priceSpecification.setSearchCriteria(searchCriteriaDtoToSearchCriteriaConverter.convert(searchCriteriaDto));
-        final List<PriceDto> priceDtos = priceEntityToDtoConverter.convertObjects(this.priceRepository.findAll(priceSpecification));
-        if (priceDtos.isEmpty()) {
+        final Optional<PriceDto> priceDto = priceEntityToDtoConverter.convertObjects(this.priceRepository.findAll(priceSpecification)).stream().findFirst();
+        if (priceDto.isEmpty()) {
             throw new NoPricesWereFoundException(StorageServiceReponse.builder()
                     .errorCode(PRICES_NOT_FOUND.getErrorCode())
                     .message(String.format(PRICES_NOT_FOUND.getErrorMessage(),
@@ -44,6 +44,6 @@ public class PriceService {
                             searchCriteriaDto.getProductId()))
                     .build());
         }
-        return priceDtos;
+        return priceDto.get();
     }
 }

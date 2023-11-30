@@ -12,8 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,14 +29,14 @@ class PriceApiDelegateImplTest {
     void prices() {
         final SearchCriteriaDto searchCriteriaDto = mock(SearchCriteriaDto.class);
         final PriceDto priceDto = mock(PriceDto.class);
-        final List<PriceDto> priceDtos = List.of(priceDto);
 
-        when(priceService.findAllFilteredPrices(searchCriteriaDto)).thenReturn(priceDtos);
+        when(priceService.findAllFilteredPrices(searchCriteriaDto)).thenReturn(priceDto);
 
-        final ResponseEntity<List<PriceDto>> response = priceApiDelegate.prices(searchCriteriaDto);
+        final ResponseEntity<PriceDto> response = priceApiDelegate.prices(searchCriteriaDto);
 
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).contains(priceDto);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getPrice()).isEqualTo(priceDto.getPrice());
     }
 }

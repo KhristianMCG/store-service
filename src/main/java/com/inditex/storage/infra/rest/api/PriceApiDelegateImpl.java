@@ -8,8 +8,6 @@ import om.inditex.storage.infra.rest.api.model.SearchCriteriaDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class PriceApiDelegateImpl implements PricesApiDelegate {
 
@@ -21,7 +19,7 @@ public class PriceApiDelegateImpl implements PricesApiDelegate {
 
     @Override
     @Timed
-    public ResponseEntity<List<PriceDto>> prices(final SearchCriteriaDto searchCriteriaDto) {
+    public ResponseEntity<PriceDto> prices(final SearchCriteriaDto searchCriteriaDto) {
         return ResponseEntity.ok(priceService.findAllFilteredPrices(searchCriteriaDto));
     }
 }

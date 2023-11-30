@@ -44,8 +44,8 @@ class PriceServiceTest {
         when(priceRepository.findAll(priceSpecification)).thenReturn(priceEntities);
         when(priceEntityToDtoConverter.convertObjects(priceEntities)).thenReturn(List.of(mock(PriceDto.class)));
 
-        final List<PriceDto> priceDtos = priceService.findAllFilteredPrices(searchCriteriaDto);
+        final PriceDto priceDto = priceService.findAllFilteredPrices(searchCriteriaDto);
 
-        assertThat(priceDtos).isNotNull().hasSize(1);
+        assertThat(priceDto).isNotNull();
     }
 }
