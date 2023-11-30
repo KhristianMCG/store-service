@@ -2,10 +2,10 @@ type: object
 properties:
   dateOfApplication:
     type: string
-    example: 2020-12-31-23:59:59
+    example: 2020-12-31 23:59:59
   productId:
     type: integer
-    example: 3
+    example: 35455
   brandId:
     type: integer
     example: 1

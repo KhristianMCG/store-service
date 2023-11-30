@@ -37,8 +37,6 @@ servers:
 paths:
   /prices:
     $ref: './paths/get-prices-spec.yml#/prices'
-  /status:
-    $ref: './paths//get-status-spec.yml#/status'
 
 components:
   schemas:
