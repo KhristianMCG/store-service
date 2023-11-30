@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(servers = {
-        @Server(url = "https://dev.inditex.ch/api", description = "Dev Server URL"),
-        @Server(url = "https://ref.inditex.ch/api", description = "Ref Server URL"),
-        @Server(url = "https://test.inditex.ch/api", description = "Test Server URL"),
-        @Server(url = "https://inditex.ch/api", description = "Production Server URL")},
+        @Server(url = "http://localhost:8080", description = "Local Server URL"),
+        @Server(url = "https://dev.inditex.ch", description = "Dev Server URL"),
+        @Server(url = "https://test.inditex.ch", description = "Test Server URL"),
+        @Server(url = "https://inditex.ch", description = "Production Server URL")},
         info = @Info(title = "Store Manager Service API",
                 contact = @Contact(url = "https://inditex.ch",
                         name = "Inditex",

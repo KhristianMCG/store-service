@@ -1,13 +1,13 @@
 type: object
 properties:
   productId:
-    type: integer
+    type: string
     example: 35455
   brandId:
-    type: integer
+    type: string
     example: 1
   priceListId:
-    type: integer
+    type: string
     example: 2
   dateOfApplicationStart:
     type: string
@@ -16,5 +16,5 @@ properties:
     type: string
     example: 2020-12-31-23:59:59
   price:
-    type: number
+    type: string
     example: 24.48

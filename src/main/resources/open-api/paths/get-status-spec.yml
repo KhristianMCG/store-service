@@ -1,0 +1,8 @@
+status:
+  get:
+    tags:
+      - Prices
+    operationId: status
+    responses:
+      '200':
+        description: successful operation

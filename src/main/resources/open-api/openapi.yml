@@ -32,11 +32,13 @@ servers:
           - live
         description: this value is assigned by the service provider, in this example `inditex.cloud`
       basePath:
-        default: /
+        default: api/v1
 
 paths:
   /prices:
     $ref: './paths/get-prices-spec.yml#/prices'
+  /status:
+    $ref: './paths//get-status-spec.yml#/status'
 
 components:
   schemas:
