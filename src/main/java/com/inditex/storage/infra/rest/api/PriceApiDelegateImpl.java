@@ -1,4 +1,4 @@
-package com.inditex.storage.infra;
+package com.inditex.storage.infra.rest.api;
 
 import com.inditex.storage.infra.rest.api.controller.PricesApiDelegate;
 import com.inditex.storage.service.PriceService;

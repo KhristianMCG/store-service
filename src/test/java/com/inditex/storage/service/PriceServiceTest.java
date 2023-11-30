@@ -1,6 +1,8 @@
 package com.inditex.storage.service;
 
 import com.inditex.storage.converter.PriceEntityToDtoConverter;
+import com.inditex.storage.converter.SearchCriteriaDtoToSearchCriteriaConverter;
+import com.inditex.storage.infra.rest.model.SearchCriteria;
 import com.inditex.storage.model.PriceEntity;
 import com.inditex.storage.repository.PriceRepository;
 import com.inditex.storage.repository.specification.PriceSpecification;
@@ -29,6 +31,8 @@ class PriceServiceTest {
     private PriceRepository priceRepository;
     @Mock
     private PriceSpecification priceSpecification;
+    @Mock
+    private SearchCriteriaDtoToSearchCriteriaConverter searchCriteriaDtoToSearchCriteriaConverter;
 
     @Test
     void findAllFilteredPrices() {
@@ -36,7 +40,7 @@ class PriceServiceTest {
         final PriceEntity priceEntity = mock(PriceEntity.class);
         final List<PriceEntity> priceEntities = List.of(priceEntity);
 
-        priceSpecification.setSearchCriteriaDto(searchCriteriaDto);
+        when(searchCriteriaDtoToSearchCriteriaConverter.convert(searchCriteriaDto)).thenReturn(mock(SearchCriteria.class));
         when(priceRepository.findAll(priceSpecification)).thenReturn(priceEntities);
         when(priceEntityToDtoConverter.convertObjects(priceEntities)).thenReturn(List.of(mock(PriceDto.class)));
 
